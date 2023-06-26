@@ -1,0 +1,24 @@
+@import '~bootstrap/scss/bootstrap';
+
+body{
+    background-color: rgb(30, 30, 30);
+    color: white;
+}
+
+//* header //////////////////////////////////////////////////////////////////
+.shadow-bottom {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.7);
+  // border-bottom: #303030 solid 2px;
+}
+
+//* aside //////////////////////////////////////////////////////////////////
+.fa-user{
+  background-color: #0B5ED7;
+  // light-grey
+  // background-color: rgb(169, 169, 169);
+}
+
+.shadow-top {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
