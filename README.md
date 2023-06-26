@@ -62,7 +62,7 @@ Questo controller risponderà a delle richieste via API e si occuperà di restit
 
 **Milestone 2**
 
-Testiare la chiamata API tramite Postman o Tunder Client e 
+Testare la chiamata API tramite Postman o Tunder Client e 
 assicurarsi di ricevere i dati correttamente.
 
 **Milestone 3**

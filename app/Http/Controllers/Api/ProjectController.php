@@ -8,4 +8,13 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
 
+  public function testApi(){
+    $test = [
+      'name' => 'Mario',
+      'surname' => 'Rossi'
+
+    ];
+
+    return response()->json($test);
+  }
 }
