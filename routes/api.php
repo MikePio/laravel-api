@@ -22,10 +22,10 @@ use App\Http\Controllers\Api\ProjectController;
 // });
 
 
-//* test con controller
+//* test api con controller
 Route::get('/test-api', [ProjectController::class, 'testApi'])->name('test-api');
 
-//* test senza controller
+//* test api senza controller
 // Route::get('/test-api', function(){
 
 //   $test = [
@@ -35,12 +35,20 @@ Route::get('/test-api', [ProjectController::class, 'testApi'])->name('test-api')
 //   return response()->json($test);
 // });
 
-
-//* cercare in thunder client (*in questo caso)
+//* test api: cercare sul browser o in thunder client
 //* http://127.0.0.1:8000/api/test-api
 
+//-----------------------------------------------------
 
+//* rotta collegata al controller per le api
+Route::namespace('api')
+        ->prefix('projects')
+        ->group(function(){
+          Route::get('/', [ProjectController::class, 'index']);
+        });
 
+//* cercare sul browser o in thunder client
+//* http://127.0.0.1:8000/api/projects
 
 
 

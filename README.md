@@ -50,7 +50,7 @@ Aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tec
 
 # **Laravel Boolfolio - API**
 ## **Descrizione esercizio attuale da svolgere**
-Continuare a lavorare su un progetto precedente (laravel-many-to-many) ma in una nuova repo(laravel-api). 
+Continuare a lavorare su un progetto precedente (laravel-many-to-many) ma in una nuova repo (laravel-api). 
 
 **Milestone 1**
 
