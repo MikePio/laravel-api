@@ -23,7 +23,11 @@ class ProjectController extends Controller
 
   public function index(){
     // query per ottenere tutti i dati dal db
-    $projects = Project::all();
+    // $projects = Project::all();
+
+    // query per ottenere tutti i dati dal db //* paginati per 8 IN QUESTO MODO TUTTI I DATI VENGONO RACCHIUSI IN UN ARRAY "data": []
+    $projects = Project::paginate(8);
+
     // creo un json con i dati della query
     return response()->json($projects);
   }

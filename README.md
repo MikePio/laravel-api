@@ -252,3 +252,277 @@ php artisan serve
 ---------------------------------------------------
 
 **comics.destroy** -> ***DELETE*** -> elimina il dato e reindirizza a comics.index
+
+---------------------------------------------------
+
+# **Creare un progetto con Breeze e Vue.js integrati**
+
+## **INIZIO BREEZE**
+---------------------------------------
+1. 
+composer create-project --prefer-dist laravel/laravel:^9.2 nome-cartella
+
+2. Dentro la cartella 
+cd nome-cartella
+
+
+3. 
+composer require laravel/breeze --dev
+
+4.
+php artisan breeze:install
+
+CLICCARE:
+0
+INVIO
+INVIO
+
+5.
+composer require pacificdev/laravel_9_preset
+
+6. !!! IMPORTANTE AGGIUNGERE --auth
+php artisan preset:ui bootstrap --auth
+
+
+---------------------------------------
+
+npm i
+
+composer install
+
+---------------------------------------
+
+php artisan key:generate 
+
+npm run dev
+
+php artisan serve
+
+--------------------------------------
+## **FINE BREEZE**
+
+/////////////////////////////////////
+
+CONFIGURAZIONE / MODIFICHE DA FARE IN BREEZE
+--------------------------------------
+nel file vite.config.js
+
+(riga 11)
+```
+            input: ['resources/scss/app.scss', 'resources/js/app.js','resources/scss/appGuest.scss', 'resources/js/appGuest.js'],
+```
+
+--------------------------------------
+creare i file GUEST appena aggiunti nei loro rispettivi percorsi (gli ultimi 2 file)
+
+--------------------------------------
+
+importare bootstrap in appGuest.scss
+```
+@import '~bootstrap/scss/bootstrap'
+```
+--------------------------------------
+
+rimuovere la rotta welcome
+--------------------------------------
+
+ed eliminare welcome.blade.php
+
+--------------------------------------
+
+in guest.blade.php
+
+cancellare tutto ciò che ènel body e aggiungere 
+```
+@yield('content')
+```
+--------------------------------------
+sempre in guest.blade.php
+
+modificare i percorsi a riga 15 nell'head
+```
+        @vite(['resources/scss/appGuest.scss', 'resources/js/appGuest.js'])
+```
+--------------------------------------
+modificare tutto ciò che è del guest con @extends('layouts.guest')
+```
+@extends('layouts.guest')
+
+@section('content')
+
+@endsection
+```
+--------------------------------------
+collegare il progetto al db nel file env
+
+esempio: 
+DB_DATABASE=db_projects
+
+--------------------------------------
+## **INIZIO VUE**
+--------------------------------------
+```
+npm i vue@next
+```
+---------------------------------------
+```
+npm i @vitejs/plugin-vue --force
+```
+---------------------------------------
+Creare un file/componente in resources/js
+
+resources/js/App.vue
+
+nel file
+```
+<script>
+export default{
+	name:'App'
+}
+
+</script>
+
+<template>
+
+</template>
+
+<style lang="scss" scoped>
+
+</style>
+```
+--------------------------------------
+
+nel file vite.config.js
+
+IN ALTO
+
+```
+import vue from '@vitejs/plugin-vue';
+```
+
+-------------------------------------
+nel file vite.config.js
+
+IN BASSO 
+
+```
+        vue({
+            template:{
+                transformAssetUrls:{
+                    base:null,
+                    includeAbsolute: false
+                }
+            }
+        })
+```
+
+--------------------------------------
+nel file appGuest.js
+
+```
+import { createApp } from "vue";
+import App from "./app";
+
+create(App).mount('#app');
+```
+
+--------------------------------------
+
+## **FINE VUE**
+
+# **Installazione Axios**
+```
+npm i axios 
+```
+
+# **Creare una cartella vite + vue (sass/scss + axios + bootstrap)** 
+## ***(senza laravel e breeze)**
+
+METODO 1
+
+npm create vite@latest nome-progetto -- --template vue
+---------------------------------------
+cd nome-progetto
+---------------------------------------
+sass/scss 
+
+comando migliore
+npm add -D sass
+comando peggiore (anche così funziona)
+npm i sass
+---------------------------------------
+axios
+
+npm i axios
+---------------------------------------
+bootstrap
+
+npm i bootstrap
+
+#### NEL FILE GENERALE/ NEL FILE NECESSARIO
+@import 'bootstrap/scss/bootstrap';
+-------------------------------------
+npm i
+---------------------------------------
+npm run dev
+
+-----------------------------------
+aggiungere in App.vue
+
+<style lang="scss">
+
+@use './scss/main.scss';
+
+</style>
+
+////////////////////////////////////////
+
+METODO 2
+
+Creazione di una cartella tramite linea di comando
+(terminale/powershell)
+
+1. Con i comandi del terminale entro nella cartella dove devo creare la repo
+Creo una cartella con il nome della repo:
+
+npm create vite@latest nomeDellaRepo
+
+2. Seleziono come framework Vue
+
+3. Seleziono come "variant" JavaScript
+
+---------------------------------------
+*SE NECESSARIO
+
+SASS
+
+npm add -D sass
+---------------------------------------
+
+AXIOS
+
+npm i axios
+-------------------------------------
+Bootstrap
+
+npm i bootstrap
+
+#### NEL FILE GENERALE/ NEL FILE NECESSARIO
+@import 'bootstrap/scss/bootstrap';
+-------------------------------------
+
+4. Apro la cartella in VsCode e nel terminale (CTRL+J) digito -> npm install
+
+Dopo aver installato tutte le "dipendenze" digito -> npm run dev
+
+5. Nella cartella 'src' si trova il file 'App.vue' che va svuotato dal suo contenuto.
+Una volta fatto digitare "with" per ottenere la scorciatoia del nostro
+snippet.
+
+6. aggiungere in App.vue
+
+<style lang="scss">
+
+@use './scss/main.scss';
+
+</style>
