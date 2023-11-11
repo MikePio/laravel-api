@@ -26,7 +26,8 @@ class ProjectController extends Controller
     // $projects = Project::all();
 
     // query per ottenere tutti i dati dal db //* paginati per 8 IN QUESTO MODO TUTTI I DATI VENGONO RACCHIUSI IN UN ARRAY "data": []
-    $projects = Project::paginate(8);
+    // con with vengono passati: (one-to-many) type - (many-to-many) technologies
+    $projects = Project::with('type', 'technologies')->paginate(8);
 
     // creo un json con i dati della query
     return response()->json($projects);
