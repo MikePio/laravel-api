@@ -19,7 +19,8 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    // 'allowed_origins' => ['*'], //* da accesso ai dati delle API a tutti i siti
+    'allowed_origins' => ['http://localhost:5173'], //* questa configurazione indica al server di consentire le richieste solo da http://localhost:5173
 
     'allowed_origins_patterns' => [],
 
