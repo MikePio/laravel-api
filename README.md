@@ -44,8 +44,10 @@ I task da svolgere sono:
 - permettere all’utente di associare le tecnologie nella pagina di creazione e modifica di un progetto
 - gestire il salvataggio dell’associazione progetto-tecnologie con opportune regole di validazione
 
+## **BONUS 1**
 Creare il seeder per il model Technology e per la tabella pivot.
 
+## **BONUS 2**
 Aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.
 
 # **Laravel Boolfolio - API**
@@ -195,7 +197,7 @@ php artisan serve
 
 - Creare una cartella " admin " nelle view
 	- creare un file home.blade.php
-	- Copiare il CONTENUTO del file " dashboard.blade.pphp " ed incollare all'interno di " home.blade.php "
+	- Copiare il CONTENUTO del file " dashboard.blade.php " ed incollare all'interno di " home.blade.php "
 
 - Creare il controller Admin/DashboardController 
 	- php artisan make:controller Admin/DashboardController 
@@ -303,7 +305,7 @@ php artisan serve
 
 /////////////////////////////////////
 
-CONFIGURAZIONE / MODIFICHE DA FARE IN BREEZE
+# CONFIGURAZIONE / MODIFICHE DA FARE IN BREEZE
 --------------------------------------
 nel file vite.config.js
 
@@ -324,6 +326,7 @@ importare bootstrap in appGuest.scss
 --------------------------------------
 
 rimuovere la rotta welcome
+
 --------------------------------------
 
 ed eliminare welcome.blade.php
@@ -332,7 +335,7 @@ ed eliminare welcome.blade.php
 
 in guest.blade.php
 
-cancellare tutto ciò che ènel body e aggiungere 
+cancellare tutto ciò che è nel body e aggiungere 
 ```
 @yield('content')
 ```
@@ -357,6 +360,14 @@ collegare il progetto al db nel file env
 
 esempio: 
 DB_DATABASE=db_projects
+
+--------------------------------------
+
+# (FARE QUESTO OGNI VOLTA CHE SI COPIA ED INCOLLA UN PROGETTO Laravel)
+
+- Eliminare da Visual Studio la cartella storage("public\storage")
+- Creare una nuova cartella virtuale con il comando 
+php artisan storage:link
 
 --------------------------------------
 ## **INIZIO VUE**

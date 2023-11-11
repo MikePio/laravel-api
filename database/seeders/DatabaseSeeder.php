@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
       //* centralizzo il/i seeder in modo da poter inviare i dati tutti in una volta con il comando: php artisan db:seed
       $this->call([
         TypeTableSeeder::class,
+        TechnologiesTableSeeder::class,
         ProjectsTableSeeder::class, //! in produzione bisogna commentare questo seeder
+        ProjectsTechnologiesTableSeeder::class, //! in produzione bisogna commentare questo seeder
       ]);
 
     }

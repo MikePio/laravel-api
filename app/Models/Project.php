@@ -6,14 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 //* per generare lo slug in questo caso
 use Illuminate\Support\Str;
+//* per il soft delete
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+  //* per il soft delete
+  protected $dates = ['delete_at'];
 
     //* array utilizzato per centralizzare i campi della tabella in modo da rendere più leggibile store() in PageController.php (per creare un nuovo progetto)
   protected $fillable = [
     'name',
+    'user_id',
+    'type_id',
     'slug',
     'description',
     'category',

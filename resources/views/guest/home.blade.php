@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 @section('content')
     <div class="container overflow-auto p-5 text-center" style="max-height: calc(100vh - 70.24px);">
         {{-- <h1>Home guest</h1> --}}

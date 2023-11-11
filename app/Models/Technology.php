@@ -10,6 +10,8 @@ class Technology extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name','slug'];
+
   //* collegamento con la tabella technologies
   public function projects(){
     return $this->belongsToMany(Project::class);

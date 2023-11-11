@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Project;
 use App\Models\Technology;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -28,8 +29,12 @@ class ProjectsTechnologiesTableSeeder extends Seeder
         //* ora al progetto estratto viene assegnato (tramite il metodo technologies() scritto nel model di Project) l'id estratto di una tecnologia
         $project->technologies()->attach($technology_id);
 
+        //* in modo casuale viene preso un user e assegnato as user_id
+        $user_id = User::inRandomOrder()->first()->id;
+
         // dump($project);
         // dump($technology_id);
+        // dump($user_id);
 
       }
     }
