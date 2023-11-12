@@ -53,3 +53,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// far funzionare tutte le rotte vue //* QUESTO CODICE SERVE QUANDO C'è un progetto unico laravel + vite per far funzionare le rotte di vue INVECE è INUTILE SE CI SONO I 2 PROGETTI SEPARATI (1 di laravel e un altro di vite)
+// Route::get('{any?}',function(){
+//   return view('guest.home');
+// })->where('any','.*')->name('home');
