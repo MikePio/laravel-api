@@ -23,6 +23,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    //* collegamento/relazione many-to-one con la tabella types
+    public function projects(){
+      return $this->hasMany(Project::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

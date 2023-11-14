@@ -45,6 +45,11 @@ class Project extends Model
     return $this->belongsTo(Type::class);
   }
 
+  //* collegamento/relazione one-to-many con la tabella user
+  public function user(){
+    return $this->belongsTo(User::class);
+  }
+
     //* funzione per generare uno slug univoco
   public static function generateSlug($str){
 

@@ -29,7 +29,7 @@ class ProjectController extends Controller
 
     // query per ottenere tutti i dati dal db //* paginati per 8 IN QUESTO MODO TUTTI I DATI VENGONO RACCHIUSI IN UN ARRAY "data": []
     // con with vengono passati: (one-to-many) type - (many-to-many) technologies
-    $projects = Project::with('type', 'technologies')->paginate(8);
+    $projects = Project::with('type', 'technologies', 'user')->paginate(8);
 
     // creo un json con i dati della query
     return response()->json($projects);
@@ -47,7 +47,16 @@ class ProjectController extends Controller
   }
 
   public function getProjectsByType($id){
-    $projects = Project::where('type_id', $id)->with('type', 'technologies')->paginate(10);
+    $projects = Project::where('type_id', $id)->with('type', 'technologies', 'user')->paginate(10);
+
+    //! DA DECOMMENTARE QUANDO ARRIVA IL MOMENTO NELLA REGISTRAZIONE
+    //TODO DA DECOMMENTARE QUANDO ARRIVA IL MOMENTO NELLA REGISTRAZIONE
+    //* DA DECOMMENTARE QUANDO ARRIVA IL MOMENTO NELLA REGISTRAZIONE
+    // $projects = Project::where('type_id', $id)->with('type', 'technologies', 'user')->paginate(10);
+    // $types = Type::all();
+    // $technologies = Technology::all();
+
+    // return response()->json(compact('projects','types','technologies'));
 
     return response()->json($projects);
   }
