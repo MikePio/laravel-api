@@ -24,15 +24,24 @@ class ProjectController extends Controller
   // }
 
   public function index(){
-    // query per ottenere tutti i dati dal db
-    // $projects = Project::all();
+    //* SOLUZIONE 1 chiamate api con più rotte
+    // // query per ottenere tutti i dati dal db
+    // // $projects = Project::all();
 
-    // query per ottenere tutti i dati dal db //* paginati per 8 IN QUESTO MODO TUTTI I DATI VENGONO RACCHIUSI IN UN ARRAY "data": []
-    // con with vengono passati: (one-to-many) type - (many-to-many) technologies
-    $projects = Project::with('type', 'technologies', 'user')->paginate(8);
+    // // query per ottenere tutti i dati dal db //* paginati per 8 IN QUESTO MODO TUTTI I DATI VENGONO RACCHIUSI IN UN ARRAY "data": []
+    // // con with vengono passati: (one-to-many) type - (many-to-many) technologies
+    // $projects = Project::with('type', 'technologies', 'user')->paginate(8);
 
-    // creo un json con i dati della query
-    return response()->json($projects);
+    // // creo un json con i dati della query
+    // return response()->json($projects);
+
+    //* SOLUZIONE 2 Creata una sola rotta per le chiamate api per i progetti, types, technologies - nel controller passa in compact i dati (types e technologies) in modo da avere un unica rotta api
+    $projects = Project::with('type', 'technologies', 'user')->paginate(10);
+
+    $types = Type::all();
+    $technologies = Technology::all();
+
+    return response()->json(compact('projects','types','technologies'));
   }
 
   public function getTypes(){
@@ -57,7 +66,6 @@ class ProjectController extends Controller
     // $technologies = Technology::all();
 
     // return response()->json(compact('projects','types','technologies'));
-
     return response()->json($projects);
   }
 
