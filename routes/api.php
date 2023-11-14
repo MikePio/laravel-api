@@ -45,10 +45,14 @@ Route::namespace('api')
         ->prefix('projects')
         ->group(function(){
           Route::get('/', [ProjectController::class, 'index']);
+          Route::get('/types', [ProjectController::class, 'getTypes']);
+          Route::get('/technologies', [ProjectController::class, 'getTechnologies']);
         });
 
 //* cercare sul browser o in thunder client
 //* http://127.0.0.1:8000/api/projects
+//* http://127.0.0.1:8000/api/projects/types
+//* http://127.0.0.1:8000/api/projects/technologies
 
 
 

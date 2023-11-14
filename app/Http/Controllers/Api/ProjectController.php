@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 //* importato il model
 use App\Models\Project;
+use App\Models\Type;
+use App\Models\Technology;
 
 class ProjectController extends Controller
 {
@@ -31,6 +33,28 @@ class ProjectController extends Controller
 
     // creo un json con i dati della query
     return response()->json($projects);
+  }
+
+  public function getTypes(){
+    // query per ottenere tutti i dati dal db
+    $types = Type::all();
+
+    // query per ottenere tutti i dati dal db //* paginati per 8 IN QUESTO MODO TUTTI I DATI VENGONO RACCHIUSI IN UN ARRAY
+    // $types = Type::paginate(8);
+
+    // creo un json con i dati della query
+    return response()->json($types);
+  }
+
+  public function getTechnologies(){
+    // query per ottenere tutti i dati dal db
+    $technologies = Technology::all();
+
+    // query per ottenere tutti i dati dal db //* paginati per 8 IN QUESTO MODO TUTTI I DATI VENGONO RACCHIUSI IN UN ARRAY
+    // $technologies = Technology::paginate(8);
+
+    // creo un json con i dati della query
+    return response()->json($technologies);
   }
 
 }

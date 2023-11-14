@@ -16,7 +16,7 @@
                     <div class="d-flex flex-column d-flex justify-content-center align-items-center">
                         <img src="{{ $project->image_path ? asset('storage/' . $project->image_path) : Vite::asset('resources/img/placeholder-img.png') }}" alt="{{ $project->image_path == false ? "No image" : $project->name }}" class="rounded-start" style="object-fit: cover; height: 232px; width: 232px;">
                     </div>
-                    <div class="d-flex flex-column justify-content-start align-items-center mx-2" style="height: 232px; width: 232px;">
+                    <div class="d-flex flex-column justify-content-start mx-2" style="height: 232px; width: 232px;">
                         <div class="my-3 text-start">
                             <h5>
                                 {{ $project->name }}
