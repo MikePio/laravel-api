@@ -56,17 +56,16 @@ class ProjectController extends Controller
   }
 
   public function getProjectsByType($id){
-    $projects = Project::where('type_id', $id)->with('type', 'technologies', 'user')->paginate(10);
-
-    //! DA DECOMMENTARE QUANDO ARRIVA IL MOMENTO NELLA REGISTRAZIONE
-    //TODO DA DECOMMENTARE QUANDO ARRIVA IL MOMENTO NELLA REGISTRAZIONE
-    //* DA DECOMMENTARE QUANDO ARRIVA IL MOMENTO NELLA REGISTRAZIONE
+    //* SOLUZIONE 1 chiamate api con più rotte // migliora la velocità del sito
     // $projects = Project::where('type_id', $id)->with('type', 'technologies', 'user')->paginate(10);
-    // $types = Type::all();
-    // $technologies = Technology::all();
 
-    // return response()->json(compact('projects','types','technologies'));
-    return response()->json($projects);
+    // return response()->json($projects);
+    //* SOLUZIONE 2 Creata una sola rotta per le chiamate api per per la ricerca dei progetti per tipologia - nel controller passa in compact i dati (types e technologies) in modo da avere un unica rotta api // peggiora la velocità del sito
+    $projects = Project::where('type_id', $id)->with('type', 'technologies', 'user')->paginate(10);
+    $types = Type::all();
+    $technologies = Technology::all();
+
+    return response()->json(compact('projects','types','technologies'));
   }
 
   public function getTechnologies(){
