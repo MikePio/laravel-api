@@ -47,6 +47,7 @@ Route::namespace('api')
           Route::get('/', [ProjectController::class, 'index']);
           Route::get('/types', [ProjectController::class, 'getTypes']);
           Route::get('/technologies', [ProjectController::class, 'getTechnologies']);
+          Route::get('/project-type/{id}', [ProjectController::class, 'getProjectsByType']);
         });
 
 //* cercare sul browser o in thunder client
