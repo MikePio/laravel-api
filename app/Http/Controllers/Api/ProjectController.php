@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Type;
 use App\Models\Technology;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProjectController extends Controller
 {
@@ -77,6 +78,48 @@ class ProjectController extends Controller
 
     // creo un json con i dati della query
     return response()->json($technologies);
+  }
+
+  public function getProjectsByTechnology($id){
+
+    //* SOLUZIONE 1 PER LA RICERCA DEI PROGETTI PER TECNOLOGIE
+    // // Ottiene il technology con tutti i progetti associati
+    // $technology = Technology::where('id', $id)->with('projects')->first();
+
+    // // Inizializza un array vuoto per i progetti
+    // $projects = [];
+
+    // // Per ogni progetto associato al technology, ottiene tutte le relazioni e le aggiunge all'array $projects
+    // foreach ($technology->projects as $project) {
+    //     $projects[] = Project::where('id', $project->id)->with('type', 'technologies', 'user')->first();
+    // }
+
+    // // Ottiene tutti i tipi e le tecnologie
+    // $types = Type::all();
+    // $technologies = Technology::all();
+
+    // // Restituisce una risposta JSON includendo i progetti, i tipi e le tecnologie
+    // return response()->json(compact('projects', 'types', 'technologies'));
+
+
+    //* SOLUZIONE 2 PER LA RICERCA DEI PROGETTI PER TECNOLOGIE - MIGLIORE
+    // Ottiene i progetti con le relazioni "type", "technologies", "user" in un formato paginato (10 progetti per pagina),
+    // selezionando solo quelli che hanno almeno una technology associata con un determinato ID.
+    $projects = Project::with('type', 'technologies', 'user')
+                ->whereHas('technologies', function(Builder $query) use($id){
+                    // Filtra i progetti che hanno almeno una technology con un ID specifico.
+                    $query->where('technology_id',$id);
+                })->paginate(10);
+
+    // Ottiene tutti i tipi di progetti disponibili.
+    $types = Type::all();
+
+    // Ottiene tutte le tecnologie disponibili.
+    $technologies = Technology::all();
+
+    // Ritorna una risposta JSON contenente i progetti filtrati, i tipi e le tecnologie disponibili.
+    return response()->json(compact('projects','types','technologies'));
+
   }
 
 }

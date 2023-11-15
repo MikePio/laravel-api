@@ -48,12 +48,15 @@ Route::namespace('api')
           Route::get('/types', [ProjectController::class, 'getTypes']);
           Route::get('/technologies', [ProjectController::class, 'getTechnologies']);
           Route::get('/project-type/{id}', [ProjectController::class, 'getProjectsByType']);
+          Route::get('/project-technology/{id}', [ProjectController::class, 'getProjectsByTechnology']);
         });
 
 //* cercare sul browser o in thunder client
 //* http://127.0.0.1:8000/api/projects
 //* http://127.0.0.1:8000/api/projects/types
 //* http://127.0.0.1:8000/api/projects/technologies
+//* http://127.0.0.1:8000/api/projects/project-type/{id}
+//* http://127.0.0.1:8000/api/projects/project-technology/{id}
 
 
 
