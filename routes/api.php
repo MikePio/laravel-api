@@ -52,6 +52,7 @@ Route::namespace('api')
           Route::get('/{slug}', [ProjectController::class, 'getProjectDetail']);
           // la rotta dello slug va bene scriverla anche in questo modo
           // Route::get('/project-detail/{slug}', [ProjectController::class, 'getProjectDetail']);
+          Route::get('/search/{toSearch}',[ProjectController::class, 'search']);
         });
 
 //* cercare sul browser o in thunder client

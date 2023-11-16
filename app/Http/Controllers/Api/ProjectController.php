@@ -123,6 +123,7 @@ class ProjectController extends Controller
 
   }
 
+  //* pagina di dettaglio nel frontend
   public function getProjectDetail($slug){
 
     $project = Project::where('slug', $slug)->with('type', 'technologies', 'user')->first();
@@ -140,5 +141,12 @@ class ProjectController extends Controller
     // dd($project);
     return response()->json($project);
   }
+
+  //* barra di ricerca per i progetti nel frontend
+  public function search($toSearch){
+    $projects = Project::where('name','like', "%$toSearch%")->with('type', 'technologies', 'user')->paginate(10);
+
+    return response()->json($projects);
+}
 
 }
