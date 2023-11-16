@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\Type;
 use App\Models\Technology;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Vite;
 
 class ProjectController extends Controller
 {
@@ -120,6 +121,24 @@ class ProjectController extends Controller
     // Ritorna una risposta JSON contenente i progetti filtrati, i tipi e le tecnologie disponibili.
     return response()->json(compact('projects','types','technologies'));
 
+  }
+
+  public function getProjectDetail($slug){
+
+    $project = Project::where('slug', $slug)->with('type', 'technologies', 'user')->first();
+
+    // altro metodo per mostrare le immagini //* controllo lato server
+    if($project->image_path) $project->image_path = asset('storage/' . $project->image_path) ;
+    else{
+
+      $project->image_path = Vite::asset('resources/img/placeholder-img.png');
+      //! non funziona
+      // $project->image_path = asset('storage/uploads/placeholder-img.png');
+      $project->image_original_name = 'Nessuna immagine';
+    }
+
+    // dd($project);
+    return response()->json($project);
   }
 
 }

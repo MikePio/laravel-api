@@ -49,6 +49,9 @@ Route::namespace('api')
           Route::get('/technologies', [ProjectController::class, 'getTechnologies']);
           Route::get('/project-type/{id}', [ProjectController::class, 'getProjectsByType']);
           Route::get('/project-technology/{id}', [ProjectController::class, 'getProjectsByTechnology']);
+          Route::get('/{slug}', [ProjectController::class, 'getProjectDetail']);
+          // la rotta dello slug va bene scriverla anche in questo modo
+          // Route::get('/project-detail/{slug}', [ProjectController::class, 'getProjectDetail']);
         });
 
 //* cercare sul browser o in thunder client
@@ -57,6 +60,7 @@ Route::namespace('api')
 //* http://127.0.0.1:8000/api/projects/technologies
 //* http://127.0.0.1:8000/api/projects/project-type/{id}
 //* http://127.0.0.1:8000/api/projects/project-technology/{id}
+//* http://127.0.0.1:8000/api/projects/{slug}
 
 
 
