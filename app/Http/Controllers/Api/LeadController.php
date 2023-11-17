@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+// per la validazione dei dati nel form
 use Illuminate\Support\Facades\Validator;
 // importo il model
 use App\Models\Lead;
+// per inviare le email - 1
+use Illuminate\Support\Facades\Mail;
+// per inviare le email - 2
+use App\Mail\NewContact;
 
 class LeadController extends Controller
 {
@@ -48,11 +53,14 @@ class LeadController extends Controller
     $new_lead->fill($data);
     $new_lead->save();
 
+    // 5. invio la mail all'indirizzo a cui voglio spedire
+    Mail::to('michelepiopilla@gmail.com')->send(new NewContact($new_lead));
+    //* dopo averla inviata controlla su https://mailtrap.io/inboxes/ poi clicca sull'inbox (importata nel file env) e vedrai la mail
 
-
-    $success = true;
     // per verificare che arrivino i dati in Post dal form (senza inserire errori nel form)
     // return response()->json($data);
+    // 6. restituisco un json con success =  true
+    $success = true;
     return response()->json(compact('success'));
   }
 }
