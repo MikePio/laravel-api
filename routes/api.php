@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 //* importato il controller Api\ProjectController
 use App\Http\Controllers\Api\ProjectController;
+//* importato il controller Api\LeadController
+use App\Http\Controllers\Api\LeadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +65,9 @@ Route::namespace('api')
 //* http://127.0.0.1:8000/api/projects/project-technology/{id}
 //* http://127.0.0.1:8000/api/projects/{slug}
 
+//* rotta mail
+Route::post('/contacts', [LeadController::class, 'store'] );
+//* http://127.0.0.1:8000/api/contacts
 
 
 
