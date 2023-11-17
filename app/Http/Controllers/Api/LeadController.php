@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+// importo il model
+use App\Models\Lead;
 
 class LeadController extends Controller
 {
@@ -40,6 +42,13 @@ class LeadController extends Controller
       $errors = $validator->errors();
       return response()->json(compact('success','errors'));
     }
+
+    // 4. se sono validi salvo i dati nel db
+    $new_lead = new Lead();
+    $new_lead->fill($data);
+    $new_lead->save();
+
+
 
     $success = true;
     // per verificare che arrivino i dati in Post dal form (senza inserire errori nel form)
