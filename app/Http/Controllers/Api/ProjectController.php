@@ -38,7 +38,7 @@ class ProjectController extends Controller
     // return response()->json($projects);
 
     //* SOLUZIONE 2 Creata una sola rotta per le chiamate api per i progetti, types, technologies - nel controller passa in compact i dati (types e technologies) in modo da avere un unica rotta api
-    $projects = Project::with('type', 'technologies', 'user')->paginate(10);
+    $projects = Project::with('type', 'technologies', 'user')->orderBy('created_at', 'desc')->paginate(10);
 
     $types = Type::all();
     $technologies = Technology::all();

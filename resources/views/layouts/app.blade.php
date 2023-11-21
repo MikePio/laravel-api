@@ -17,7 +17,8 @@
     {{-- CK editor --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+    <title>Boolfolio | Admin</title>
 
 
     <!-- Fonts -->
